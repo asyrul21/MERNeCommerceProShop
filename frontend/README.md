@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# Front End to the Pro Shop e-Commerce App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Getting Started
 
-## Available Scripts
+```bash
+npx create-react-app frontend
+```
 
-In the project directory, you can run:
+## Third Party Libraries
 
-### `yarn start`
+1. Bootstrap React [Link](https://react-bootstrap.github.io/getting-started/introduction)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+npm install react-bootstrap bootstrap
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+NOTE: WE ARE NOT USING BOOTSTRAP REACT. FOR THIS COURSE WE USE BOOTSWATCH
 
-### `yarn test`
+2. Bootswatch [Link](https://bootswatch.com)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Go to Lux, and Download `bootstrap.min.css`
 
-### `yarn build`
+- paste this file in `src/`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- import this in `index.js`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```javascript
+import "./bootstrap.min.css";
+import "./index.css";
+import App from "./App";
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- then install React Bootstrap
 
-### `yarn eject`
+```bash
+npm install react-bootstrap
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Font Awesome for Icons
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Go to [cdnjs](https://cdnjs.com)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Search for Font Awesome: https://cdnjs.com/libraries/font-awesome
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- `copy link tag` of `all.min.css`
 
-## Learn More
+- add to `public/index.html`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```html
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+  integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+  crossorigin="anonymous"
+/>
+<title>Welcome to ProShop</title>
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Rating Stars : [Link](https://fontawesome.com/icons/star?style=solid)
 
-### Code Splitting
+5. React Router
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+npm install react-router-dom react-router-bootstrap
+```
 
-### Analyzing the Bundle Size
+- import in App.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```javascript
+import { BrowserRouter as Router, Route } from "react-router-dom";
+```
 
-### Making a Progressive Web App
+- import in Header
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```javascript
+import { LinkContainer } from "react-router-bootstrap";
+```
 
-### Advanced Configuration
+6. Axios to trigger backend API
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+npm install axios
+```
 
-### Deployment
+## Initial Settings
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. Adding backend proxy. In `package.json`, add:
 
-### `yarn build` fails to minify
+```json
+"proxy": "http://127.0.0.1:5000",
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The value of proxy should be the path to the backend server
