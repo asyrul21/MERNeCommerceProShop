@@ -82,6 +82,14 @@ import { LinkContainer } from "react-router-bootstrap";
 npm install axios
 ```
 
+## Redux
+
+1. Redux
+
+```bash
+npm install redux react-redux redux-thunk redux-devtools-extension
+```
+
 ## Initial Settings
 
 1. Adding backend proxy. In `package.json`, add:
