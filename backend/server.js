@@ -4,12 +4,16 @@ const connectDB = require("./config/db");
 
 // routes
 const ProductRoutes = require("./routes/productRoutes");
+const UserRoutes = require("./routes/userRoutes");
 
 // middlewares
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 dotenv.config();
 const app = express();
+
+// body parser
+app.use(express.json());
 
 connectDB();
 
@@ -24,6 +28,7 @@ app.get("/", (req, res) => {
 
 // routes
 app.use("/api/products", ProductRoutes);
+app.use("/api/users", UserRoutes);
 
 // error middlewares
 app.use(notFound);

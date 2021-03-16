@@ -57,6 +57,12 @@
    npm install colors
    ```
 
+4. JSON Web Token [Link](https://www.npmjs.com/package/jsonwebtoken)
+
+   ```bash
+   npm install jsonwebtoken
+   ```
+
 ## Database Tools
 
 1. Mongo Compass
