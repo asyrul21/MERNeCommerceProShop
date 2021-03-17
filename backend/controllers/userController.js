@@ -37,24 +37,28 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("User already exists");
   }
 
-  const user = await UserModel.create({
-    name,
-    email,
-    password,
-  });
-
-  // if ok
-  if (user) {
-    res.status(201).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-      token: generateToken(user._id),
+  try {
+    const user = await UserModel.create({
+      name,
+      email,
+      password,
     });
-  } else {
+    // if ok
+    if (user) {
+      res.status(201).json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        isAdmin: user.isAdmin,
+        token: generateToken(user._id),
+      });
+    } else {
+      res.status(400);
+      throw new Error("Invalid user data");
+    }
+  } catch (error) {
     res.status(400);
-    throw new Error("Invalid user data");
+    throw new Error(error);
   }
 });
 
@@ -77,8 +81,37 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
+//@description  Update user profile
+//@route        PUT /api/users/profile
+//@access       private
+const updateUserProfile = asyncHandler(async (req, res) => {
+  const user = await UserModel.findById(req.user._id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    username = req.body.email || user.email;
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      token: generateToken(updatedUser._id),
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
 module.exports = {
   authUser,
   getUserProfile,
   registerUser,
+  updateUserProfile,
 };
