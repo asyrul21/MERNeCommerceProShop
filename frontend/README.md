@@ -82,6 +82,12 @@ import { LinkContainer } from "react-router-bootstrap";
 npm install axios
 ```
 
+7. Paypal Button: [Link](https://www.npmjs.com/package/react-paypal-button-v2)
+
+```bash
+npm i react-paypal-button-v2
+```
+
 ## Redux
 
 1. Redux

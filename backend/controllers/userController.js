@@ -89,7 +89,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
   if (user) {
     user.name = req.body.name || user.name;
-    username = req.body.email || user.email;
+    user.email = req.body.email || user.email;
     if (req.body.password) {
       user.password = req.body.password;
     }
@@ -109,9 +109,77 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
+//@description  GET user all users
+//@route        API /api/users/
+//@access       private/Admin
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await UserModel.find({});
+  res.json(users);
+});
+
+//@description  Delete user
+//@route        DEL /api/users/:id
+//@access       private/Admin
+const deleteUser = asyncHandler(async (req, res) => {
+  const user = await UserModel.findById(req.params.id);
+
+  if (user) {
+    await user.remove();
+    res.json({
+      message: "User removed",
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found.");
+  }
+});
+
+//@description  GET user by id
+//@route        GET /api/users/:id
+//@access       private/Admin
+const getUserById = asyncHandler(async (req, res) => {
+  const user = await UserModel.findById(req.params.id).select("-password");
+
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404);
+    throw new Error("User not found.");
+  }
+});
+
+//@description  Update user by admin
+//@route        PUT /api/users/:id
+//@access       private/Admin
+const updateUser = asyncHandler(async (req, res) => {
+  const user = await UserModel.findById(req.params.id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    user.isAdmin = req.body.isAdmin;
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
 module.exports = {
   authUser,
   getUserProfile,
   registerUser,
   updateUserProfile,
+  getUsers,
+  deleteUser,
+  getUserById,
+  updateUser,
 };

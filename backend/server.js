@@ -1,10 +1,13 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
+const path = require("path");
 
 // routes
 const ProductRoutes = require("./routes/productRoutes");
 const UserRoutes = require("./routes/userRoutes");
+const OrderRoutes = require("./routes/orderRoutes");
+const UploadRoutes = require("./routes/uploadRoutes");
 
 // middlewares
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
@@ -29,6 +32,17 @@ app.get("/", (req, res) => {
 // routes
 app.use("/api/products", ProductRoutes);
 app.use("/api/users", UserRoutes);
+app.use("/api/orders", OrderRoutes);
+app.use("/api/upload", UploadRoutes);
+
+// paypal client id
+app.get("/api/config/paypal", (req, res) =>
+  res.send(process.env.PAYPAL_CLIENTID)
+);
+
+// make upload folder static
+const folderpath = path.resolve();
+app.use("/uploads", express.static(path.join(folderpath, "/uploads")));
 
 // error middlewares
 app.use(notFound);

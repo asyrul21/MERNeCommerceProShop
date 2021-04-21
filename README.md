@@ -84,3 +84,44 @@
    ```bash
    npm install express-async-handler
    ```
+
+## Handling Image File Uploads
+
+Using [Multer JS](https://www.npmjs.com/package/multer)
+
+```bash
+npm install multer --save
+```
+
+<br />
+
+# Developement Flow
+
+## Backend
+
+1. Create Controller
+
+2. Use controller in Routes
+
+To create middleware,
+
+1. Create middleware
+
+2. Apply in controller
+
+3. use in Routes
+
+## Front End (Redux)
+
+1. Create Constant
+
+2. Use in Reducer
+
+3. Update Store
+
+4. Create Action (apply dispatch)
+
+5. Use action in Component
+
+   - use UseSelector to get state from global store
+   - use useDispatch to trigger Action methods
