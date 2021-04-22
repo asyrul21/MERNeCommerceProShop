@@ -42,6 +42,7 @@ app.get("/api/config/paypal", (req, res) =>
 );
 
 const folderpath = path.resolve();
+app.use("/uploads", express.static(path.join(folderpath, "/uploads")));
 // for production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(folderpath, "/frontend/build")));
@@ -56,7 +57,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // make upload folder static
-app.use("/uploads", express.static(path.join(folderpath, "/uploads")));
+// app.use("/uploads", express.static(path.join(folderpath, "/uploads")));
 
 // error middlewares
 app.use(notFound);
