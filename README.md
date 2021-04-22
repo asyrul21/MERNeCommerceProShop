@@ -163,7 +163,13 @@ if (process.env.NODE_ENV === "production") {
 3. Update package.json under scripts
 
 ```bash
-"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm intall --prefix frontend && npm run build --prefix frontend"
+"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+```
+
+4. Set heroku remote repo
+
+```
+heroku git:remote -a proshop-asyrul
 ```
 
 ## Heroku
