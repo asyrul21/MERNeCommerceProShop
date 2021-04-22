@@ -154,8 +154,58 @@ if (process.env.NODE_ENV === "production") {
 }
 ```
 
+2. Update .gitignore
+
+```bash
+/frontend/build
+```
+
+3. Update package.json under scripts
+
+```bash
+"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm intall --prefix frontend && npm run build --prefix frontend"
+```
+
+## Heroku
+
+1. Login
+
+```bash
+heroku login
+```
+
+2. Create app
+
+```bash
+heroku create proshop-asyrul
+```
+
+3. Create Procfile
+
+```
+web: node backend/server.js
+```
+
+## Testing Productin Build
+
+1. In frontend/ run
+
+```bash
+npm run build
+```
+
 2. Update .env
 
 ```env
 NODE_ENV = production
 ```
+
+3. In root, run
+
+```bash
+npm start
+```
+
+4. App should be at localhost:5000
+
+5. IMPORTANT: Dont forget to change .env back to development
