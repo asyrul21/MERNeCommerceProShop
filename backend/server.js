@@ -41,9 +41,17 @@ app.get("/api/config/paypal", (req, res) =>
   res.send(process.env.PAYPAL_CLIENTID)
 );
 
+// error middlewares
+app.use(notFound);
+app.use(errorHandler);
+
 const folderpath = path.resolve();
+// make upload folder static
 app.use("/uploads", express.static(path.join(folderpath, "/uploads")));
+
 // for production
+// needs to be at bottom
+// order MATTERS
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(folderpath, "/frontend/build")));
 
@@ -55,13 +63,6 @@ if (process.env.NODE_ENV === "production") {
     res.send("API is running");
   });
 }
-
-// make upload folder static
-// app.use("/uploads", express.static(path.join(folderpath, "/uploads")));
-
-// error middlewares
-app.use(notFound);
-app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 app.listen(

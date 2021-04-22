@@ -232,4 +232,4 @@ npm start
 
 # Bugs
 
-1. Uploaded image not showing on deployed app
+1. Uploaded image not showing on deployed app - resolved
