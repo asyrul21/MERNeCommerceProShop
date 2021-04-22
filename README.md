@@ -1,3 +1,7 @@
+# The MERN e-Commerce Course Project (Proshop)
+
+This is the repository for the e-Commerce app built during the completion of Brad Traversy's MERN e-Commerce from Scratch Udemy Course. The deployed app can be found here: [ProShop](https://proshop-asyrul.herokuapp.com/)
+
 # Getting Started Root Level
 
 1. Npm init
@@ -136,6 +140,8 @@ To create middleware,
 
 # Deployment
 
+## Prepare
+
 1. Add to Server.js
 
 ```javascript
@@ -192,6 +198,14 @@ heroku create proshop-asyrul
 web: node backend/server.js
 ```
 
+4. Set .env variables in Heroku App Settings
+
+## Deploy
+
+```bash
+git push heroku master
+```
+
 ## Testing Productin Build
 
 1. In frontend/ run
@@ -215,3 +229,7 @@ npm start
 4. App should be at localhost:5000
 
 5. IMPORTANT: Dont forget to change .env back to development
+
+# Bugs
+
+1. Uploaded image not showing on deployed app
