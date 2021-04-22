@@ -88,6 +88,12 @@ npm install axios
 npm i react-paypal-button-v2
 ```
 
+8. React helmet [Link](https://www.npmjs.com/package/react-helmet)
+
+```bash
+npm i react-helmet
+```
+
 ## Redux
 
 1. Redux

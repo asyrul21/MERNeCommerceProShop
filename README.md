@@ -63,6 +63,12 @@
    npm install jsonwebtoken
    ```
 
+5. The Morgan Logger [Link](https://www.npmjs.com/package/morgan)
+
+   ```bash
+   npm i morgan
+   ```
+
 ## Database Tools
 
 1. Mongo Compass
@@ -125,3 +131,31 @@ To create middleware,
 
    - use UseSelector to get state from global store
    - use useDispatch to trigger Action methods
+
+<br />
+
+# Deployment
+
+1. Add to Server.js
+
+```javascript
+const folderpath = path.resolve();
+// for production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(folderpath, "/frontend/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(folderpath, "frontend", "build", "index.html"));
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running");
+  });
+}
+```
+
+2. Update .env
+
+```env
+NODE_ENV = production
+```
