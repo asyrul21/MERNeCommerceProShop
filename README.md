@@ -73,6 +73,12 @@ This is the repository for the e-Commerce app built during the completion of Bra
    npm i morgan
    ```
 
+6. Express Error Handler (Link)[https://www.npmjs.com/package/express-async-handler/v/1.1.4]
+
+   ```bash
+   npm i express-async-handler
+   ```
+
 ## Database Tools
 
 1. Mongo Compass
